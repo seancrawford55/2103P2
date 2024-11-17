@@ -16,10 +16,10 @@ struct Node{
 template <typename T>
 class LinkedList{
     private:
-    Node<T>* head; //Head of list is private to keep it safe
+    Node<T>* head; //Head of list pointer
 
     public:
-    LinkedList() : head(nullptr) {} //Initialize the head of linked list
+    LinkedList() : head(nullptr) {}
     
     //Deletes entire list
     ~LinkedList() {
@@ -31,9 +31,29 @@ class LinkedList{
         }
     }
 
+    //Function to add a Node to the end of the list
+    void add(T value){
+        Node<T>* newNode = new Node<T>(value);
 
-    
-}
+        if(!head){
+            head = newNode; //When the list is empty adds the node at the head
+        } else {
+            Node<T>* temp = head;
+            while (temp ->next){
+                temp = temp->next; //Move to the last node 
+            }
+            temp->next = newNode; //Link to the new node
+        }
+    }
+
+    //Function to remove a Node with a specific value
+    void remove(T value){
+        if (!head) return; //When the list is empty this function does nothing
+
+        
+
+    }
+};
 
 int main(){
 
