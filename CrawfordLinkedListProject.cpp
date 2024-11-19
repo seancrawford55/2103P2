@@ -50,7 +50,13 @@ class LinkedList{
     void remove(T value){
         if (!head) return; //When the list is empty this function does nothing
 
-        
+        //Edge case for when head node holds data
+        if (head->data == value) {
+            Node<T>* temp = head;
+            head = head->next;
+            delete temp;
+            return;
+        }
 
     }
 };
