@@ -62,6 +62,36 @@ class LinkedList{
 };
 
 int main(){
+    template <typename T>
+    LinkedList<T> list;
+    //Prompt the user to choose to add, remove, or display
+    cout << "Enter 1 for Add to list" << endl;
+    cout << "Enter 2 for remove from list" << endl;
+    cout << "Enter 3 to display list" << endl;
+    int input;
+    cin >> input;
+    switch (input)
+    {
+    case 1: //Call add element when 1 is inputted
+        cout << "What value would you like to add?" << endl;
+        T input2;
+        list.add(cin >> input2);
+        break;
+    case 2: //Call remove element when 2 is inputted
+        if(list.head != nullptr){
+            cout << "The list is empty. Cannot remove elements" << endl;
+        } else {
+            cout << "Which value would you like to remove?" << endl;
+            cin >> T input3;
+            list.remove(input3);
+        }
+    case 3: //Call the display when 3 is inputted
+        list.display();
+
+    default:
+        break;
+    }
+    
 
     return 0;
 
