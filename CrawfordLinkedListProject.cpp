@@ -61,8 +61,8 @@ class LinkedList{
     }
 };
 
+template <typename T>
 int main(){
-    template <typename T>
     LinkedList<T> list;
     //Prompt the user to choose to add, remove, or display
     cout << "Enter 1 for Add to list" << endl;
