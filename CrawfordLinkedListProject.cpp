@@ -55,43 +55,67 @@ class LinkedList{
             Node<T>* temp = head;
             head = head->next;
             delete temp;
+            cout << value << " removed." << endl;
             return;
         }
 
+        Node<T>* current = head;
+        Node<T>* prev = nullptr;
+        //Searching for the value inputted in the list
+        while (current != nullptr && current ->data != value){
+            prev = current;
+            current = current->next;
+        }
+
+        //If the value is not found in the list
+        if(current == nullptr){
+            cout << value << " not found in list." << endl;
+            return;
+        }
+
+        prev->next = current->next;
+        delete current;
+        cout << value << " was removed." << endl;
+
+    }
+
+    //Function to traverse and display the entire linked list
+    void display() const {
+        if (head == nullptr) {
+            cout << "The list is empty." << endl;
+            return;
+        }
+
+        Node<T>* temp = head;
+        while (temp != nullptr){
+            cout << temp->data << "->";
+            temp = temp->next;
+        }
+        cout << "NULL" << endl;
     }
 };
 
-template <typename T>
-int main(){
-    LinkedList<T> list;
-    //Prompt the user to choose to add, remove, or display
-    cout << "Enter 1 for Add to list" << endl;
-    cout << "Enter 2 for remove from list" << endl;
-    cout << "Enter 3 to display list" << endl;
-    int input;
-    cin >> input;
-    switch (input)
-    {
-    case 1: //Call add element when 1 is inputted
-        cout << "What value would you like to add?" << endl;
-        T input2;
-        list.add(cin >> input2);
-        break;
-    case 2: //Call remove element when 2 is inputted
-        if(list.head != nullptr){
-            cout << "The list is empty. Cannot remove elements" << endl;
-        } else {
-            cout << "Which value would you like to remove?" << endl;
-            cin >> T input3;
-            list.remove(input3);
-        }
-    case 3: //Call the display when 3 is inputted
-        list.display();
 
-    default:
-        break;
-    }
-    
+int main(){
+    LinkedList<int> list;
+
+    list.add(10);
+    list.add(20);
+    list.add(30);
+    list.display();
+
+    list.remove(20);
+    list.display();
+
+    list.remove(40);
+
+    LinkedList<string> stringList;
+    stringList.add("Hello");
+    stringList.add("World");
+    stringList.display();
+
+    stringList.remove("World");
+    stringList.display();
 
     return 0;
 
